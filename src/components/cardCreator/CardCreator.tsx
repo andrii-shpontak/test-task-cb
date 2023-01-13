@@ -1,43 +1,38 @@
 import React, { FC } from 'react';
-import { Box, Card, CardContent, Typography, CardActions, Link, CardMedia } from '@mui/material';
+import { Box, Card, CardContent, Typography, CardActions, CardMedia } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import './cardCreator.scss';
 
-interface ICardProps {
+type Article = {
+  id: number;
   imageUrl: string;
+  newsSite: string;
   publishedAt: string;
   summary: string;
   title: string;
-}
+  updatedAt: string;
+  url: string;
+};
 
-const CardCreator: FC<ICardProps> =
+const CardCreator: FC<Article> =
   ({
+    id,
     imageUrl,
+    newsSite,
     publishedAt,
     summary,
-    title
+    title,
+    updatedAt,
+    url
   }) => {
 
-    // const monthDictionary = {
-    //     '01': 'January',
-    //     '01': 'January',
-    //     '01': 'January',
-    //     '01': 'January',
-    //     '01': 'January',
-    //     '01': 'January',
-    //     '01': 'January',
-    //     '01': 'January',
-    //     '01': 'January',
-    //     '01': 'January',
-    // }
+    const arrOfMonts: string[] = ['January', 'February', 'February', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const pubYear: string = publishedAt.slice(0, 4);
+    const pubDay: string = publishedAt.slice(8, 10);
+    const pubMonth: string = arrOfMonts[+publishedAt.slice(5, 7) - 1];
 
-    // const arrOfMonts: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    // const pubYear = publishedAt.slice(0, 4);
-    // const pubDay = publishedAt.slice(8, 10);
-    // const pubMonthDate = publishedAt.slice(5, 7)
-    // const pubMonth = arrOfMonts[+publishedAt.slice(5, 7) - 1];
-
-    // const timeToPublicate: string = `${monthDictionary[pubMonthDate]} ${pubDay}th, ${pubYear}`;
+    const timeToPublicate: string = `${pubMonth} ${pubDay}th, ${pubYear}`;
 
     return (
       <Box className="card_box">
@@ -49,16 +44,16 @@ const CardCreator: FC<ICardProps> =
             alt='card-photo'
           />
           <CardContent className='card_content'>
-            {/* <Typography className='time'>{timeToPublicate}</Typography> */}
+            <Typography className='time'>{timeToPublicate}</Typography>
             <Typography className='card_title' gutterBottom variant='h5' component='div'>
               {title}
             </Typography>
             <Typography className='card_descr' variant='body2' color='text.secondary'>
-              {summary}
+              {summary.length >= 100 ? summary.slice(0, 99) + '...' : summary}
             </Typography>
           </CardContent>
           <CardActions className='card__actions'>
-            <Link className='card__actions_link' href="#" underline="hover">
+            <Link to={`/${id}`} className='card__actions_link'>
               Read more
             </Link>
           </CardActions>
