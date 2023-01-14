@@ -1,9 +1,7 @@
 import { Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import React from 'react';
-
-import './descriptionPage.scss';
+import './style.scss';
 
 const DescriptionPage = () => {
   return (

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Box, Card, CardContent, Typography, CardActions, CardMedia } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import './cardCreator.scss';
+import './style.scss';
 
 type Article = {
   id: number;

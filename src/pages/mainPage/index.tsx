@@ -1,59 +1,12 @@
 import React from 'react';
-import { useState, useCallback, useEffect } from 'react';
-import axios from 'axios';
+import { useSearchArticleQuery } from '../../store/newsApi';
 
-import './mainPage.scss';
-import CardCreator from '../../components/cardCreator/CardCreator';
-
-type Article = {
-  id: number;
-  imageUrl: string;
-  newsSite: string;
-  publishedAt: string;
-  summary: string;
-  title: string;
-  updatedAt: string;
-  url: string;
-};
-
-type GetArticlesResponse = Article[];
+import './style.scss';
+import CardCreator from '../../components/cardCreator';
 
 const MainPage: React.FC = () => {
 
-  const [articles, setArticles] = useState<GetArticlesResponse>([]);
-  const [loading, setLoading] = useState(false);
-
-  async function getArticles() {
-    try {
-      const { data, status } = await axios.get<GetArticlesResponse>(
-        'https://api.spaceflightnewsapi.net/v3/articles',
-        {
-          headers: {
-            Accept: 'application/json',
-          },
-        },
-      );
-
-      console.log('response status is: ', status);
-
-      setArticles(data);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log('error message: ', error.message);
-        return error.message;
-      } else {
-        console.log('unexpected error: ', error);
-        return 'An unexpected error occurred';
-      }
-    }
-  }
-
-  useEffect(() => {
-    getArticles();
-  }, []); //componentDidMount
-  // getArticles();
-
-  console.log(articles);
+  const { isLoading, isError, data } = useSearchArticleQuery('');
 
   return (
     <div className='main'>
@@ -70,7 +23,7 @@ const MainPage: React.FC = () => {
       </div>
 
       <div className="card__field">
-        {articles.map(({ ...props }) => {
+        {data?.map(({ ...props }) => {
           return (
             <CardCreator
               key={props.id}
