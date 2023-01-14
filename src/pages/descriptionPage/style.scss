@@ -4,10 +4,12 @@
 
 .description {
   &__header {
-    width: 100%;
-    height: 245px;
-    background: url("../../assets/demobg.png") no-repeat 50% / cover;
-    z-index: -1;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 245px;
+      z-index: -1;
+    }
   }
   &__content {
     width: 100%;

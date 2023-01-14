@@ -1,19 +1,9 @@
 import React, { FC } from 'react';
 import { Box, Card, CardContent, Typography, CardActions, CardMedia } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Article } from '../../models/models';
 
 import './style.scss';
-
-type Article = {
-  id: number;
-  imageUrl: string;
-  newsSite: string;
-  publishedAt: string;
-  summary: string;
-  title: string;
-  updatedAt: string;
-  url: string;
-};
 
 const CardCreator: FC<Article> =
   ({
