@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ServerResponse, Article } from '../../models/models';
+import { Article } from '../../models/models';
 
 export const newsApi = createApi({
   reducerPath: 'news/api',
@@ -10,8 +10,7 @@ export const newsApi = createApi({
     searchArticle: build.query<Article[], string>({
       query: (search: string) => ({
         url: ''
-      }),
-      // transformResponse: (response: ServerResponse) => response.items
+      })
     })
   })
 })

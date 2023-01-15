@@ -50,5 +50,6 @@
   width: 100%;
   height: 530px;
   display: grid;
+  justify-items: center;
   grid-template-columns: 1fr 1fr 1fr;
 }
