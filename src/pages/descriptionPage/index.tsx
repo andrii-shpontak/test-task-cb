@@ -1,6 +1,5 @@
 import { Container } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
-import { useSearchArticleQuery } from '../../store/newsApi';
 import { Article } from '../../models/models';
 import { useState, useEffect, useMemo } from 'react';
 import Spinner from '../spinner';
@@ -9,22 +8,21 @@ import ErrorPage from '../errorPage';
 import './style.scss';
 
 const DescriptionPage = () => {
-  const { isLoading, isError, data } = useSearchArticleQuery('');
 
   const [article, setArticle] = useState<Article>();
 
   const mark = useParams();
 
-  useEffect(() => {
-    if (typeof (data) !== 'undefined' && typeof (mark.id) !== 'undefined') {
+  // useEffect(() => {
+  //   if (typeof (data) !== 'undefined' && typeof (mark.id) !== 'undefined') {
 
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].id === +mark.id) {
-          setArticle(data[i]);
-        }
-      }
-    }
-  }, [data]);
+  //     for (let i = 0; i < data.length; i++) {
+  //       if (data[i].id === +mark.id) {
+  //         setArticle(data[i]);
+  //       }
+  //     }
+  //   }
+  // }, [data]);
 
   const renderDescription = useMemo(() => (
     <div>
@@ -45,9 +43,9 @@ const DescriptionPage = () => {
 
   return (
     <div>
-      {isLoading && <Spinner />}
+      {/* {isLoading && <Spinner />}
       {isError && <ErrorPage />}
-      {data && renderDescription}
+      {data && renderDescription} */}
     </div>
   );
 };

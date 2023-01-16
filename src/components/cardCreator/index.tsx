@@ -3,8 +3,10 @@ import { Box, Card, CardContent, Typography, CardActions, CardMedia } from '@mui
 import { Link } from 'react-router-dom';
 import { Article } from '../../models/models';
 import { useCallback } from 'react';
+import { SearchObject } from '../../models/models';
 
 import './style.scss';
+import { useSelector } from 'react-redux';
 
 const HightLight = (props: any) => {
   const { filter, str } = props;
@@ -30,9 +32,12 @@ const HightLight = (props: any) => {
   })
 }
 
-const CardCreator: FC<Article> = ({ id, imageUrl, newsSite, publishedAt, summary, title, updatedAt, url, searchValue }) => {
+const CardCreator: FC<Article> = ({ id, imageUrl, newsSite, publishedAt, summary, title, updatedAt, url }) => {
+  const searchValue = useSelector<SearchObject>(state => state.searchBy)
+  console.log('searchValue: ', searchValue);
 
-  console.log(searchValue);
+
+  // return null
 
   const arrOfMonts: string[] = ['January', 'February', 'February', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const pubYear: string = publishedAt.slice(0, 4);

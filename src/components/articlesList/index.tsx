@@ -1,31 +1,33 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { useSearchArticleQuery } from '../../store/newsApi';
 import { useDebouns } from '../../hooks/debouns';
 import CardCreator from "../cardCreator";
+import { useSelector, useDispatch } from "react-redux";
+// import { updateSearchValue } from "../../store/actions";
 
-import './style.scss';
 
-const ArticlesList: React.FC = () => {
+import { updateSearchValue } from "../../store/slices/newsSlice";
+
+const ArticlesList: React.FC = (data = []) => {
+  const dispatch = useDispatch();
 
   const [searchValue, setSearchValue] = useState<string>('');
   const debounced = useDebouns(searchValue);
-  const { data } = useSearchArticleQuery('');
+  // const { data } = useSearchArticleQuery('');
 
-  const filteredArticles = useMemo(() => {
-    return data?.filter(article => {
-      return (article.title.toLowerCase().includes(searchValue.toLowerCase())
-        || article.summary.toLowerCase().includes(searchValue.toLowerCase()));
-    })
-  }, [searchValue, data]);
+  // const filteredArticles = useMemo(() => {
+  //   return data?.filter(article => {
+  //     return (article.title.toLowerCase().includes(searchValue.toLowerCase())
+  //       || article.summary.toLowerCase().includes(searchValue.toLowerCase()));
+  //   })
+  // }, [searchValue, data]);
 
-  useEffect(() => {
-    setSearchValue(searchValue);
-    console.log(searchValue)
-  }, [debounced]);
+  // useEffect(() => {
+  //   dispatch(updateSearchValue(searchValue))
+  // }, [searchValue]);
 
   return (
     <div className='main'>
-      <div className="filter">
+      {/* <div className="filter">
         <p className="filter__title">Filter by keywords</p>
         <div className="filter__input">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,17 +41,16 @@ const ArticlesList: React.FC = () => {
         </div>
         <p className="filter__title filter__title_subtitle">Results: {filteredArticles?.length}</p>
         <div className="divider"></div>
-      </div>
+      </div> */}
 
       <div className="card__field">
-        {filteredArticles?.map(({ ...props }) => {
+        {/* {filteredArticles?.map(({ ...props }) => {
           return (
             <CardCreator
               key={props.id}
-              searchValue={searchValue}
               {...props}
-            />)
-        })}
+            />) */}
+        {/* })} */}
       </div>
     </div>
   );

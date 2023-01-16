@@ -10,7 +10,7 @@ const ErrorPage: React.FC = () => {
         <div className='error'>
             <p className='error__title'>Something went wrong...</p>
             <img className='error__img' src={img} alt="error" />
-            <Button variant="outlined" className='error__button'><Link to='/'>Back to main page</Link></Button>
+            <Button variant="outlined" className='error__button'><a href='/'>Back to main page</a></Button>
         </div>
     );
 };

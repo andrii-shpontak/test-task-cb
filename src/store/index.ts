@@ -1,15 +1,11 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-// import articlesReducer from './newsSlice';
-import { newsApi } from "./newsApi";
+import { combineReducers, configureStore, createReducer, getDefaultMiddleware } from "@reduxjs/toolkit";
+import newsReducer from './slices/newsSlice'
+
+const rootReducer = combineReducers({
+  searchValue: newsReducer,
+})
 
 export const store = configureStore({
-  reducer: {
-    [newsApi.reducerPath]: newsApi.reducer
-  },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(newsApi.middleware)
+  reducer: newsReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware({ immutableCheck: false, serializableCheck: false })
 });
-
-// export default store;
-
-// export type RootState = ReturnType<typeof store.getState>;
-// export type AppDispatch = typeof store.dispatch;
