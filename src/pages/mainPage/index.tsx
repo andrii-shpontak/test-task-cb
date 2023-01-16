@@ -60,8 +60,6 @@ const MainPage: React.FC = () => {
     getArticles();
   }, []); //componentDidMount
 
-  // console.log(articles);
-
   useEffect(() => {
     dispatch(updateSearchValue(searchValue));
   }, [debounced]);

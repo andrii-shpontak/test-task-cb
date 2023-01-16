@@ -7,7 +7,6 @@ import { SearchObject } from '../../models/models';
 
 import './style.scss';
 import { useSelector } from 'react-redux';
-import DescriptionPage from '../../pages/descriptionPage';
 
 const HightLight = (props: any) => {
   const { filter, str } = props;

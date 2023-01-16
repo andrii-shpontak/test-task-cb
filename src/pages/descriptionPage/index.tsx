@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import { IArticle, MainState } from '../../models/models';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import './style.scss';
