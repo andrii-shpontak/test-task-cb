@@ -33,7 +33,7 @@ const HightLight = (props: any) => {
 }
 
 const CardCreator: FC<Article> = (props) => {
-  const { id, imageUrl, newsSite, publishedAt, summary, title, updatedAt, url } = props;
+  const { id, imageUrl, publishedAt, summary, title } = props;
   const searchValue = useSelector<SearchObject>(state => state.searchBy);
 
   const arrOfMonts: string[] = ['January', 'February', 'February', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

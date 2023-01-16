@@ -58,11 +58,12 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     getArticles();
+    // eslint-disable-next-line
   }, []); //componentDidMount
 
   useEffect(() => {
     dispatch(updateSearchValue(searchValue));
-  }, [debounced]);
+  }, [debounced, dispatch, searchValue]);
 
   if (isLoading) {
     return <Spinner />

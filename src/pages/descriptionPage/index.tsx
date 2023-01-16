@@ -21,16 +21,16 @@ const DescriptionPage: React.FC = () => {
         }
       }
     }
-  }, [articles]);
+  }, [articles, mark.id]);
 
   return (
     <div>
-      <div className="description__header"><img src={article?.imageUrl} alt="image" /></div>
+      <div className="description__header"><img src={article?.imageUrl} alt='cargImage' /></div>
       <Container className='container'>
         <div className="description__content">
           <h2 className="description__content_title">{article?.title}</h2>
           <div className="description__content_text">{article?.summary}</div>
-          <a className='description__content_sourse' href={article?.url} target='_blank'>Open source</a>
+          <a className='description__content_sourse' href={article?.url}>Open source</a>
         </div>
         <Link to={'/'} className="description__link" >Back to homepage</Link>
       </Container>
