@@ -1,5 +1,6 @@
 # Getting Started with Create React App
 
+See preview: [DEMO LINK](https://papaya-platypus-18cd56.netlify.app/)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
