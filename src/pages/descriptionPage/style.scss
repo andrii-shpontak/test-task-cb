@@ -27,10 +27,18 @@
       line-height: 29px;
     }
     &_text {
-      margin-top: 50px;
+      margin: 50px 0;
       font-size: 18px;
       line-height: 27px;
       font-weight: 400;
+    }
+    &_sourse {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   &__link {
@@ -51,6 +59,20 @@
       height: 12px;
       top: -2px;
       left: -20px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .description {
+    &__content {
+      padding: 20px;
+      &_text {
+        margin-top: 25px;
+      }
+    }
+    &__link {
+      top: -50px;
     }
   }
 }

@@ -2,20 +2,17 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDebouns } from '../../hooks/debouns';
 import axios from 'axios';
-
-// import ArticlesList from '../../components/articlesList';
 import { GetArticlesResponse } from '../../models/models';
 import CardCreator from '../../components/cardCreator';
 import Spinner from '../spinner';
 import ErrorPage from '../errorPage';
 
-import { updateSearchValue } from "../../store/slices/newsSlice";
+import { updateSearchValue, getArticlesData } from "../../store/slices/newsSlice";
 
 import './style.scss';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
-
   const [isLoading, setLoading] = useState<boolean>(false)
   const [isError, setError] = useState<boolean>(false)
   const [articles, setArticles] = useState<GetArticlesResponse>([])
@@ -25,7 +22,7 @@ const MainPage: React.FC = () => {
   async function getArticles() {
     setLoading(true)
     try {
-      const { data, status } = await axios.get<GetArticlesResponse>(
+      const { data } = await axios.get<GetArticlesResponse>(
         'https://api.spaceflightnewsapi.net/v3/articles',
         {
           headers: {
@@ -34,9 +31,8 @@ const MainPage: React.FC = () => {
         },
       );
 
-      console.log('response status is: ', status);
-
       setArticles(data);
+      dispatch(getArticlesData(data));
       setLoading(false);
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -67,7 +63,7 @@ const MainPage: React.FC = () => {
   // console.log(articles);
 
   useEffect(() => {
-    dispatch(updateSearchValue(searchValue))
+    dispatch(updateSearchValue(searchValue));
   }, [debounced]);
 
   if (isLoading) {

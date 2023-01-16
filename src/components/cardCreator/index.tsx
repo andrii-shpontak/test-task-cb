@@ -7,6 +7,7 @@ import { SearchObject } from '../../models/models';
 
 import './style.scss';
 import { useSelector } from 'react-redux';
+import DescriptionPage from '../../pages/descriptionPage';
 
 const HightLight = (props: any) => {
   const { filter, str } = props;
@@ -32,12 +33,9 @@ const HightLight = (props: any) => {
   })
 }
 
-const CardCreator: FC<Article> = ({ id, imageUrl, newsSite, publishedAt, summary, title, updatedAt, url }) => {
-  const searchValue = useSelector<SearchObject>(state => state.searchBy)
-  console.log('searchValue: ', searchValue);
-
-
-  // return null
+const CardCreator: FC<Article> = (props) => {
+  const { id, imageUrl, newsSite, publishedAt, summary, title, updatedAt, url } = props;
+  const searchValue = useSelector<SearchObject>(state => state.searchBy);
 
   const arrOfMonts: string[] = ['January', 'February', 'February', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const pubYear: string = publishedAt.slice(0, 4);
@@ -74,6 +72,7 @@ const CardCreator: FC<Article> = ({ id, imageUrl, newsSite, publishedAt, summary
           <Link to={`/${id}`} className='card__actions_link'>
             Read more
           </Link>
+
         </CardActions>
       </Card>
     </Box>

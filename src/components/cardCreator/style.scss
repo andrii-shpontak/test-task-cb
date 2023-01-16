@@ -3,7 +3,7 @@
   width: 350px;
   .card_content {
     padding: 25px 25px 0 25px;
-    height: 290px;
+    min-height: 200px;
     .time {
       font-family: "Montserrat", sans-serif;
       font-size: 14px;
@@ -63,5 +63,11 @@
         right: -20px;
       }
     }
+  }
+}
+
+@media (max-width: 400px) {
+  .card_box {
+    width: 300px;
   }
 }

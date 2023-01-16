@@ -1,9 +1,5 @@
-import { combineReducers, configureStore, createReducer, getDefaultMiddleware } from "@reduxjs/toolkit";
-import newsReducer from './slices/newsSlice'
-
-const rootReducer = combineReducers({
-  searchValue: newsReducer,
-})
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import newsReducer from './slices/newsSlice';
 
 export const store = configureStore({
   reducer: newsReducer,
