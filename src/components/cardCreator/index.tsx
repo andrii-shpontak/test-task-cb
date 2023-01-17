@@ -1,35 +1,36 @@
 import React, { FC } from 'react';
 import { Box, Card, CardContent, Typography, CardActions, CardMedia } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { Article } from '../../models/models';
+import { Article, SearchObject } from '../../models/models';
 import { useCallback } from 'react';
-import { SearchObject } from '../../models/models';
 
 import './style.scss';
 import { useSelector } from 'react-redux';
 
 const HightLight = (props: any) => {
-  const { filter, str } = props;
+  const { filter, descriptionText } = props;
 
   if (filter.length === 0) {
-    return str
+    return descriptionText
   }
 
   const regexp = new RegExp(filter, 'ig')
-  const matchValue = str.match(regexp);
+  const matchValue = descriptionText.match(regexp);
 
   if (!matchValue) {
-    return str;
+    return descriptionText;
   }
 
-  return str.split(regexp).map((s: any, index: number, arr: any) => {
-    if (index >= arr.length - 1) {
-      return s;
-    }
+  return descriptionText
+    .split(regexp)
+    .map((rawString: unknown, index: number, arr: any) => {
+      if (index >= arr.length - 1) {
+        return rawString;
+      }
 
-    const c = matchValue.shift();
-    return <>{s}<span key={Math.random()} className="hightlight">{c}</span></>
-  })
+      const highlightedString = matchValue.shift();
+      return <>{rawString}<span key={Math.random()} className="hightlight">{highlightedString}</span></>
+    })
 }
 
 const CardCreator: FC<Article> = (props) => {
@@ -42,13 +43,14 @@ const CardCreator: FC<Article> = (props) => {
   const pubMonth: string = arrOfMonts[+publishedAt.slice(5, 7) - 1];
 
   const timeToPublicate: string = `${pubMonth} ${pubDay}th, ${pubYear}`;
+  const cutSummary: string = summary.length >= 100 ? summary.slice(0, 99) + '...' : summary;
 
-  const light = useCallback((str: string) => {
-    return <HightLight filter={searchValue} str={str} />
+  const light = useCallback((descriptionText: string) => {
+    return <HightLight filter={searchValue} descriptionText={descriptionText} />
   }, [searchValue]);
 
   return (
-    <Box className="card_box">
+    <Box className="card">
       <Card>
         <CardMedia
           component='img'
@@ -57,13 +59,13 @@ const CardCreator: FC<Article> = (props) => {
           alt='card-photo'
         />
 
-        <CardContent className='card_content'>
-          <Typography className='time'>{timeToPublicate}</Typography>
-          <Typography className='card_title' gutterBottom variant='h5' component='div'>
+        <CardContent className='card__content'>
+          <Typography id="time" className='card__content_time'>{timeToPublicate}</Typography>
+          <Typography className='card__content_title' gutterBottom variant='h5' component='div'>
             {light(title)}
           </Typography>
-          <Typography className='card_descr' variant='body2' color='text.secondary'>
-            {summary.length >= 100 ? summary.slice(0, 99) + '...' : summary}
+          <Typography className='card__content_descr' variant='body2' color='text.secondary'>
+            {light(cutSummary)}
           </Typography>
         </CardContent>
 

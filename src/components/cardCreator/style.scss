@@ -1,10 +1,11 @@
-.card_box {
+.card {
   margin-top: 45px;
   width: 350px;
-  .card_content {
+  &__content {
     padding: 25px 25px 0 25px;
     min-height: 200px;
-    .time {
+    &_time,
+    #time {
       font-family: "Montserrat", sans-serif;
       font-size: 14px;
       line-height: 21px;
@@ -23,7 +24,7 @@
         left: -30px;
       }
     }
-    .card_title {
+    &_title {
       font-family: "Montserrat", sans-serif;
       color: #363636;
       margin-top: 24px;
@@ -34,16 +35,19 @@
         background-color: rgb(255, 247, 132);
       }
     }
-    .card_descr {
+    &_descr {
       margin-top: 20px;
       font-family: "Montserrat", sans-serif;
       color: #363636;
       font-weight: 400;
       font-size: 16px;
       line-height: 24px;
+      .hightlight {
+        background-color: rgb(255, 247, 132);
+      }
     }
   }
-  .card__actions {
+  &__actions {
     padding: 25px;
     &_link {
       position: relative;
@@ -67,7 +71,7 @@
 }
 
 @media (max-width: 400px) {
-  .card_box {
+  .card {
     width: 300px;
   }
 }

@@ -88,7 +88,7 @@ const MainPage: React.FC = () => {
             onChange={e => setSearchValue(e.target.value)}
           />
         </div>
-        <p className="filter__title filter__title_subtitle">Results: {filteredArticles?.length}</p>
+        <p className="filter__title_subtitle">Results: {filteredArticles?.length}</p>
         <div className="divider"></div>
       </div>
 
